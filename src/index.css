@@ -1,61 +1,103 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
   
-  --color-primary-green: #16A34A;
+  --color-primary-green: #4F46E5;
+  --color-primary-green-dark: #4338CA;
   --color-warning-yellow: #F59E0B;
-  --color-danger-red: #DC2626;
+  --color-danger-red: #EF4444;
   --color-bg-light: #F8FAFC;
   --color-text-primary: #0F172A;
-  --color-text-secondary: #64748B;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748B;
+  
+  --shadow-premium: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05), 0 10px 15px -3px rgb(0 0 0 / 0.02);
+  --shadow-premium-hover: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+  --shadow-glow: 0 0 20px rgba(79, 70, 229, 0.15);
+  --shadow-glow-hover: 0 0 30px rgba(79, 70, 229, 0.25);
 }
 
 @layer base {
   body {
-    @apply antialiased text-text-primary bg-bg-light font-sans leading-[1.5];
+    @apply antialiased text-text-primary bg-bg-light font-sans leading-relaxed selection:bg-primary-green/20 selection:text-primary-green-dark;
   }
 
   .dark body {
-    @apply bg-slate-950 text-slate-100;
+    @apply bg-slate-950 text-slate-100 selection:bg-primary-green/30 selection:text-indigo-400;
   }
 
   h1 {
-    @apply font-display text-4xl md:text-6xl font-black tracking-tight text-text-primary dark:text-white leading-[1.1];
+    @apply font-display text-3xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-slate-100 leading-[1.1];
   }
 
   h2 {
-    @apply font-display text-2xl md:text-3xl font-bold tracking-tight text-text-primary dark:text-white;
+    @apply font-display text-xl md:text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100;
   }
 
   h3 {
-    @apply font-display text-xl md:text-2xl font-semibold tracking-tight text-text-primary dark:text-white;
+    @apply font-display text-lg md:text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100;
   }
 
   p {
-    @apply text-base md:text-lg text-text-secondary dark:text-slate-400 leading-relaxed;
+    @apply text-sm md:text-base text-text-secondary dark:text-slate-400 font-medium;
   }
 }
 
 .glass-panel {
-  @apply bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-sm dark:bg-slate-900/80 dark:border-slate-800/60;
+  @apply bg-white/70 backdrop-blur-2xl border border-white/40 shadow-premium dark:bg-slate-900/70 dark:border-slate-800/40;
 }
 
 .bento-card {
-  @apply bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 shadow-[0_2px_4px_rgba(0,0,0,0.02),0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_20px_rgba(0,0,0,0.04)] transition-all duration-300 rounded-2xl;
+  @apply bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/60 shadow-premium hover:shadow-premium-hover transition-all duration-500 rounded-[2rem] overflow-hidden;
 }
 
 .score-number {
-  @apply text-[36px] md:text-[48px] font-bold tracking-tighter;
+  @apply font-display text-4xl md:text-6xl font-black tracking-tighter;
 }
 
 .results-bg {
-  background-image: radial-gradient(#e2e8f0 0.5px, transparent 0.5px);
+  background-image: 
+    radial-gradient(circle at 2px 2px, #e2e8f0 1px, transparent 0);
   background-size: 32px 32px;
 }
 
 .dark .results-bg {
-  background-image: radial-gradient(#1e293b 0.5px, transparent 0.5px);
+  background-image: 
+    radial-gradient(circle at 2px 2px, #1e293b 1px, transparent 0);
+}
+
+.cyber-grid {
+  background-image: linear-gradient(to right, #f1f5f9 1px, transparent 1px),
+    linear-gradient(to bottom, #f1f5f9 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.dark .cyber-grid {
+  background-image: linear-gradient(to right, #0f172a 1px, transparent 1px),
+    linear-gradient(to bottom, #0f172a 1px, transparent 1px);
+}
+
+.btn-primary {
+  @apply bg-primary-green hover:bg-primary-green-dark text-white font-black px-6 py-3 rounded-xl shadow-xl shadow-emerald-500/20 transition-all active:scale-95 flex items-center justify-center gap-2 tracking-tight;
+}
+
+.input-field {
+  @apply w-full px-5 py-4 bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-800 rounded-2xl focus:outline-none focus:ring-8 focus:ring-primary-green/5 focus:border-primary-green transition-all text-base font-bold placeholder:text-text-muted dark:placeholder:text-slate-600;
+}
+
+.scan-line {
+  @apply absolute left-0 w-full h-1 bg-primary-green/40 blur-sm z-10;
+  animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+.glow-text {
+  @apply drop-shadow-[0_0_10px_rgba(79,70,229,0.3)];
 }

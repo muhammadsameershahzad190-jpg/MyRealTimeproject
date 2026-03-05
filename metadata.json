@@ -1,7 +1,5 @@
 {
-  "name": "Recruit-Watch: Real-Time Job Scam Monitoring System",
-  "description": "An AI-powered platform to verify job authenticity, detect scams, and analyze company credibility using advanced NLP and image processing.",
-  "requestFramePermissions": [
-    "camera"
-  ]
+  "name": "RecruitWatch – Cyber-Threat Intelligence Unit",
+  "description": "A premium AI-powered intelligence platform for real-time job authenticity verification, fraud detection, and organizational credibility analysis.",
+  "requestFramePermissions": []
 }
